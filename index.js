@@ -50,7 +50,7 @@ const onlineUsers = new Map(); // userId -> socketId
 
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
-  
+
   socket.on('join_chat', (userId) => {
     socket.join(userId);
     onlineUsers.set(userId, socket.id);
@@ -131,6 +131,10 @@ app.use((err, req, res, next) => {
     message: err.message || 'Internal Server Error',
     error: process.env.NODE_ENV === 'development' ? err : {}
   });
+});
+
+app.route('/').get((req, res) => {
+  res.send('Hello World!');
 });
 
 const PORT = process.env.PORT || 5001;
