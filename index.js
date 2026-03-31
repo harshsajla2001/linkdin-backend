@@ -41,7 +41,7 @@ app.use('/api/messages', messageRoutes);
 // Socket.io setup
 const io = new Server(server, {
   cors: {
-    origin: '*',
+    origin: process.env.CLIENT_URL || '*',
     methods: ['GET', 'POST']
   }
 });
